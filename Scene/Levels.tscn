@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://resource/woodlabel.png" type="Texture" id=1]
+[ext_resource path="res://resource/font/alagard_by_pix3m-d6awiwp.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scene/Levels.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 38
+font_data = ExtResource( 2 )
+
+[node name="Levels" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 49.0
+margin_top = 41.0
+margin_right = 328.0
+margin_bottom = 224.0
+action_mode = 0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Level1" type="Button" parent="TextureButton"]
+margin_left = 70.0
+margin_top = 52.0
+margin_right = 202.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 1, 0, 0.188235, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Level1"
+flat = true
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+margin_left = 485.0
+margin_top = 64.0
+margin_right = 732.0
+margin_bottom = 275.0
+action_mode = 0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Level2" type="Button" parent="TextureButton2"]
+margin_left = 57.0
+margin_top = 68.0
+margin_right = 193.0
+margin_bottom = 131.0
+custom_colors/font_color = Color( 1, 0, 0.188235, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Level2"
+flat = true
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+margin_left = 651.0
+margin_top = 324.0
+margin_right = 918.0
+margin_bottom = 527.0
+action_mode = 0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Level3" type="Button" parent="TextureButton3"]
+margin_left = 53.0
+margin_top = 59.0
+margin_right = 189.0
+margin_bottom = 122.0
+custom_colors/font_color = Color( 1, 0, 0.188235, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Level3"
+flat = true
+
+[node name="TextureButton4" type="TextureButton" parent="."]
+margin_left = 200.0
+margin_top = 263.0
+margin_right = 488.0
+margin_bottom = 459.0
+action_mode = 0
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 1 )
+expand = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Boss" type="Button" parent="TextureButton4"]
+margin_left = 61.0
+margin_top = 59.0
+margin_right = 197.0
+margin_bottom = 122.0
+custom_colors/font_color = Color( 1, 0, 0.188235, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "BOSS"
+flat = true
+
+[connection signal="pressed" from="TextureButton/Level1" to="." method="_on_Level1_pressed"]
+[connection signal="pressed" from="TextureButton2/Level2" to="." method="_on_Level2_pressed"]
+[connection signal="pressed" from="TextureButton3/Level3" to="." method="_on_Level3_pressed"]
+[connection signal="pressed" from="TextureButton4/Boss" to="." method="_on_Boss_pressed"]

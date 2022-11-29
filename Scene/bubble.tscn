@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://resource/floaty_64.png" type="Texture" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 11
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.734756, 0.832317, 0.856707, 0.887195, 0.914634, 0.939024, 0.941176, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 0.909804, 0.92549, 1, 0.611816, 0.0477982, 0.070992, 1, 0.869629, 0.176643, 0.205141, 1, 0.794118, 0.794118, 0.794118, 1, 0.776965, 0.739159, 0.739159, 1, 0.761719, 0.690308, 0.690308, 1, 0.888072, 0.141438, 0.141438, 1, 0.902344, 0.0422974, 0.0422974, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.00854701, 0.907955 ), 0.0, 0.0, 0, 0, Vector2( 0.481481, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.994302, 0.789773 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 500, -60, 1 )
+flag_disable_z = true
+direction = Vector3( -1, -50, -1 )
+gravity = Vector3( 0, -1, 0 )
+initial_velocity = 20.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 100.0
+damping = 20.54
+scale = 0.5
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 3 )
+anim_offset = 0.94
+anim_offset_random = 0.85
+
+[node name="Particles2D" type="Particles2D"]
+material = SubResource( 1 )
+position = Vector2( -1, 0 )
+amount = 500
+visibility_rect = Rect2( -100, -121, 200, 500 )
+process_material = SubResource( 4 )
+texture = ExtResource( 1 )

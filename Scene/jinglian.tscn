@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resource/11tiankong2qj2.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 369.5, 16.5 )
+
+[node name="jinglian" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( 25.5, 1 )
+scale = Vector2( 1, 0.743056 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 31, 800, 113 )

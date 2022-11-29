@@ -1,0 +1,197 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://resource/pumpking/nangua.png" type="Texture" id=1]
+[ext_resource path="res://Scene/PlayerDetection.gd" type="Script" id=2]
+[ext_resource path="res://Scene/Pumpkin.gd" type="Script" id=3]
+[ext_resource path="res://Scene/AttackDetection.gd" type="Script" id=4]
+[ext_resource path="res://Scene/PumpHP.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 31, 53 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "Attack"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PumpHitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "KnockBack"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 3 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_ret_normal"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PumpHitBox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Run"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 27, 50 )
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 304.002
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 70, 37.5 )
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 77.2787
+
+[node name="Pumpkin" type="KinematicBody2D"]
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 1 )
+hframes = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 10 )
+shape = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/KnockBack = SubResource( 8 )
+anims/RESET = SubResource( 3 )
+anims/Run = SubResource( 4 )
+
+[node name="PumpHurtBox" type="Area2D" parent="."]
+visible = false
+position = Vector2( 0, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PumpHurtBox"]
+position = Vector2( 0, -1 )
+shape = SubResource( 9 )
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource( 6 )
+
+[node name="AttackDetection" type="Area2D" parent="."]
+visible = false
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackDetection"]
+shape = SubResource( 10 )
+
+[node name="PumpHP" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1, -58 )
+
+[node name="PumpHitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PumpHitBox"]
+shape = SubResource( 12 )
+disabled = true
+
+[connection signal="area_entered" from="PumpHurtBox" to="." method="_on_PumpHurtBox_area_entered"]
+[connection signal="body_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_body_exited"]
+[connection signal="body_entered" from="AttackDetection" to="AttackDetection" method="_on_AttackDetection_body_entered"]
+[connection signal="body_exited" from="AttackDetection" to="AttackDetection" method="_on_AttackDetection_body_exited"]

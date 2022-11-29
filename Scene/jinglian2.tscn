@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resource/JingLian0.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 244.222, 23.058 )
+
+[node name="jinglian2" type="StaticBody2D"]
+rotation = 0.173013
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 85.8697, -127.458 )
+rotation = -2.34056
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="CollisionShape2D"]
+position = Vector2( 38.1274, 0.239647 )
+rotation = -1.2951
+scale = Vector2( -0.912047, 4.29978 )
+texture = ExtResource( 1 )
+offset = Vector2( -5.4308, -8.19936 )
+region_enabled = true
+region_rect = Rect2( 462, 242, 23, 119 )

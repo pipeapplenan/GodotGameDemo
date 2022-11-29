@@ -1,0 +1,3 @@
+
+extends RichTextEffect
+pass

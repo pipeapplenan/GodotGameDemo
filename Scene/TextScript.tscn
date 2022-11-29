@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scene/Label.gd" type="Script" id=1]
+[ext_resource path="res://resource/font/alagard_by_pix3m-d6awiwp.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+font_data = ExtResource( 2 )
+
+[node name="TextScript" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+margin_left = 5.0
+margin_top = -25.0
+margin_right = 1103.0
+margin_bottom = 392.0
+theme = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+text = "
+'One night, Dodo had a very trilling dream.',
+	'She become a very brave girl.',
+	'She walks through the magic forest, jump over undergrand magma cave.',
+	'She run over dark forest and fight with big monsters in Arena.',
+	'Dodo feels excited in her dream compared to his timid personality in a real world.',
+	'She can kill and fight with enemies.',
+	'Dodo needs your encourange to move forward.....'"
+autowrap = true
+script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="Label"]

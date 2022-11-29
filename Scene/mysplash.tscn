@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://addons/awesome_splash/core/SplashContainer.gd" type="Script" id=1]
+[ext_resource path="res://src/demo_collection/aqua/splash_screen.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scene/LoadingPage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://musicandsound/splashpage.mp3" type="AudioStream" id=4]
+
+[node name="SplashContainer" type="Node2D"]
+script = ExtResource( 1 )
+move_to_scene = ExtResource( 3 )
+
+[node name="MySplash" parent="." instance=ExtResource( 2 )]
+logo_path = "res://resource/Dodo/02.png"
+title = "Produced By"
+description = "Warrior Dodo"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[connection signal="ready" from="MySplash" to="." method="_on_MySplash_ready"]

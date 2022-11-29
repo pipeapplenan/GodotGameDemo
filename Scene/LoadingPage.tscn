@@ -1,0 +1,101 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://resource/font/_bitmap_font____romulus_by_pix3m-d6aokem.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scene/LoadingPage.gd" type="Script" id=2]
+[ext_resource path="res://Scene/LoadingDialog.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scene/TextScript.tscn" type="PackedScene" id=4]
+[ext_resource path="res://musicandsound/typing1.wav" type="AudioStream" id=5]
+[ext_resource path="res://musicandsound/menumusic.mp3" type="AudioStream" id=6]
+[ext_resource path="res://resource/Dodo/09.png" type="Texture" id=7]
+[ext_resource path="res://resource/Dodo/07.png" type="Texture" id=8]
+[ext_resource path="res://resource/Dodo/08.png" type="Texture" id=9]
+[ext_resource path="res://resource/Dodo/06.png" type="Texture" id=10]
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 5
+emission_ring_radius = 210.32
+emission_ring_inner_radius = 408.21
+emission_ring_height = 33.5
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+direction = Vector3( 150, 0, 0 )
+spread = 30.0
+gravity = Vector3( 0, 98, 0 )
+orbit_velocity = 683.33
+orbit_velocity_random = 0.39
+linear_accel = 66.67
+linear_accel_random = 0.76
+radial_accel = -13.34
+radial_accel_random = 0.32
+angle_random = 0.32
+anim_speed_random = 0.36
+
+[sub_resource type="DynamicFont" id=9]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.792157, 0.0784314, 0.141176, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=6]
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[node name="LoadingPage" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 533, 313 )
+amount = 1000
+speed_scale = 0.5
+fixed_fps = 6
+process_material = SubResource( 7 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = 632.0
+margin_top = 557.0
+margin_right = 1021.0
+margin_bottom = 593.0
+custom_fonts/font = SubResource( 9 )
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+value = 70.0
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 550.764, 310.813 )
+rotation = 0.222929
+scale = Vector2( 0.739635, 0.787234 )
+frames = SubResource( 8 )
+animation = "Idle"
+frame = 4
+playing = true
+
+[node name="Control" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="TextScript" parent="." instance=ExtResource( 4 )]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
+
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
